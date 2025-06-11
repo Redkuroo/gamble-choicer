@@ -85,7 +85,7 @@ export default function NbaPlayerStatsPage() {
         <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
           <div className="bg-[#23232a] rounded-lg p-8 w-full max-w-xs flex flex-col items-center relative">
             <button
-              className="absolute top-2 right-2 text-gray-400 hover:text-white text-2xl"
+              className="absolute top-2 right-2 text-gray-400 hover:text-white text-2xl cursor-pointer"
               onClick={handleClose}
             >
               &times;
@@ -107,7 +107,7 @@ export default function NbaPlayerStatsPage() {
                       {stats.map((stat) => (
                         <button
                           key={stat}
-                          className="w-full py-2 px-4 bg-[#383838] text-white rounded hover:bg-[#444] transition"
+                          className="w-full py-2 px-4 bg-[#383838] text-white rounded hover:bg-[#444] transition cursor-pointer"
                           onClick={() => setSelectedStat(stat)}
                         >
                           {stat}
@@ -123,14 +123,14 @@ export default function NbaPlayerStatsPage() {
                     <div className="flex flex-col sm:flex-row gap-4 w-full">
                       {/* OVER button */}
                       <button
-                        className="flex-1 flex items-center justify-center gap-2 bg-white text-black font-semibold px-6 py-3 rounded-sm shadow border border-transparent hover:bg-gray-100 transition uppercase tracking-widest w-full sm:w-auto"
+                        className="flex-1 flex items-center justify-center gap-2 bg-white text-black font-semibold px-6 py-3 rounded-sm shadow border border-transparent hover:bg-gray-100 transition uppercase tracking-widest w-full sm:w-auto cursor-pointer"
                         onClick={() => handleBet("OVER")}
                       >
                         OVER <span className="ml-2">+</span>
                       </button>
                       {/* UNDER button */}
                       <button
-                        className="flex-1 flex items-center justify-center gap-2 bg-transparent text-white font-semibold px-6 py-3 rounded-sm shadow border border-gray-400 hover:bg-[#23232a] transition uppercase tracking-widest w-full sm:w-auto"
+                        className="flex-1 flex items-center justify-center gap-2 bg-transparent text-white font-semibold px-6 py-3 rounded-sm shadow border border-gray-400 hover:bg-[#23232a] transition uppercase tracking-widest w-full sm:w-auto cursor-pointer"
                         onClick={() => handleBet("UNDER")}
                       >
                         <span className="flex items-center justify-center mr-2 text-lg font-bold">-</span>
@@ -153,7 +153,7 @@ export default function NbaPlayerStatsPage() {
                 <p className="text-gray-300 mb-1 text-center">{selectedStat}</p>
                 <p className="text-gray-300 mb-6 text-center">{betChoice}</p>
                 <button
-                  className="mt-2 px-6 py-2 bg-white text-black rounded shadow hover:bg-gray-100 font-semibold"
+                  className="mt-2 px-6 py-2 bg-white text-black rounded shadow hover:bg-gray-100 font-semibold cursor-pointer"
                   onClick={handleClose}
                 >
                   Close
