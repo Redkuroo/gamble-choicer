@@ -5,52 +5,121 @@ import { motion, AnimatePresence } from "framer-motion";
 interface Player {
   name: string;
   image: string;
+  team: 'OKC' | 'Pacers';
 }
 
 const players: Player[] = [
   {
-    name: "Alex Caruso",
-    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/1627936.png",
+    name: "Shai Gilgeous-Alexander",
+    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/1628983.png",
+    team: "OKC",
   },
   {
     name: "Luguentz Dort",
     image: "https://cdn.nba.com/headshots/nba/latest/1040x760/1629652.png",
-  },
-  {
-    name: "Shai Gilgeous-Alexander",
-    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/1628983.png",
-  },
-  {
-    name: "Isaiah Hartenstein",
-    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/1628392.png",
+    team: "OKC",
   },
   {
     name: "Chet Holmgren",
     image: "https://cdn.nba.com/headshots/nba/latest/1040x760/1631096.png",
-  },
-  {
-    name: "Isaiah Joe",
-    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/1630198.png",
-  },
-  {
-    name: "Cason Wallace",
-    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/1641703.png",
-  },
-  {
-    name: "Aaron Wiggins",
-    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/1630598.png",
+    team: "OKC",
   },
   {
     name: "Jalen Williams",
     image: "https://cdn.nba.com/headshots/nba/latest/1040x760/1631114.png",
+    team: "OKC",
+  },
+  {
+    name: "Isaiah Joe",
+    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/1630198.png",
+    team: "OKC",
+  },
+  {
+    name: "Cason Wallace",
+    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/1641703.png",
+    team: "OKC",
+  },
+  {
+    name: "Aaron Wiggins",
+    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/1630598.png",
+    team: "OKC",
   },
   {
     name: "Kenrich Williams",
     image: "https://cdn.nba.com/headshots/nba/latest/1040x760/1629026.png",
+    team: "OKC",
   },
   {
-    name: "	Jaylin Williams",
+    name: "Jaylin Williams",
     image: "https://cdn.nba.com/headshots/nba/latest/1040x760/1631119.png",
+    team: "OKC",
+  },
+  {
+    name: "Alex Caruso",
+    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/1627936.png",
+    team: "OKC",
+  },
+  {
+    name: "Isaiah Hartenstein",
+    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/1628392.png",
+    team: "OKC",
+  },
+  // Pacers players
+  {
+    name: "Tyrese Haliburton",
+    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/1630169.png",
+    team: "Pacers",
+  },
+  {
+    name: "Myles Turner",
+    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/1626167.png",
+    team: "Pacers",
+  },
+  {
+    name: "Thomas Bryant",
+    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/1628418.png",
+    team: "Pacers",
+  },
+  {
+    name: "Bennedict Mathurin",
+    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/16394.png",
+    team: "Pacers",
+  },
+  {
+    name: "Andrew Nembhard",
+    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/16311.png",
+    team: "Pacers",
+  },
+  {
+    name: "Aaron Nesmith",
+    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/1630174.png",
+    team: "Pacers",
+  },
+ 
+  {
+    name: "T.J. McConnell",
+    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/204456.png",
+    team: "Pacers",
+  },
+  {
+    name: "Obi Toppin",
+    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/1630167.png",
+    team: "Pacers",
+  },
+  {
+    name: "Isaiah Jackson",
+    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/16532.png",
+    team: "Pacers",
+  },
+  {
+    name: "Ben Sheppard",
+    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/1641762.png",
+    team: "Pacers",
+  },
+  {
+    name: "Paskal Siakam    ",
+    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/1627783.png",
+    team: "Pacers",
   },
 ];
 
@@ -66,6 +135,7 @@ export default function NbaPlayerStatsPage() {
   const [showModal, setShowModal] = useState(false);
   const [selectedStat, setSelectedStat] = useState<string | null>(null);
   const [betChoice, setBetChoice] = useState<BetChoice | null>(null);
+  const [selectedTeam, setSelectedTeam] = useState<'OKC' | 'Pacers'>('OKC');
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const handleCardClick = (player: Player) => {
@@ -94,8 +164,24 @@ export default function NbaPlayerStatsPage() {
       <h2 className="text-4xl font-extrabold text-white mb-2 tracking-wide">NBA Player Stats</h2>
       <h3 className="text-xl text-yellow-300 mb-10">OKC vs Pacers — Hi Jai! Pick a Bet for me to win</h3>
 
+      {/* Team Toggle */}
+      <div className="flex gap-4 mb-8">
+        <button
+          className={`px-6 py-2 rounded-full font-bold border-2 transition-all duration-200 ${selectedTeam === 'OKC' ? 'bg-yellow-400 text-black border-yellow-400 shadow' : 'bg-transparent text-yellow-300 border-yellow-300 hover:bg-yellow-400 hover:text-black'}`}
+          onClick={() => setSelectedTeam('OKC')}
+        >
+          OKC
+        </button>
+        <button
+          className={`px-6 py-2 rounded-full font-bold border-2 transition-all duration-200 ${selectedTeam === 'Pacers' ? 'bg-yellow-400 text-black border-yellow-400 shadow' : 'bg-transparent text-yellow-300 border-yellow-300 hover:bg-yellow-400 hover:text-black'}`}
+          onClick={() => setSelectedTeam('Pacers')}
+        >
+          Pacers
+        </button>
+      </div>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 w-full max-w-6xl">
-        {players.map((player) => (
+        {players.filter(p => p.team === selectedTeam).map((player) => (
           <div
             key={player.name}
             className="bg-[#1e1e24] border border-gray-700 rounded-xl flex flex-col items-center p-6 cursor-pointer hover:bg-[#2c2c38] transition-transform duration-300 hover:scale-105 shadow-lg hover:shadow-yellow-500/10"
