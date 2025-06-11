@@ -1,5 +1,6 @@
 "use client";
 import { useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface Player {
   name: string;
@@ -25,7 +26,10 @@ const players: Player[] = [
   },
 ];
 
-const stats = ["Points", "Rebounds", "Assists", "Steals", "Blocks", "Turnovers", "Field Goal Made", "Field Goal Attempted", "2 Pointers Made", "3 Pointers Made"];
+const stats = [
+  "Points", "Rebounds", "Assists", "Steals", "Blocks", "Turnovers",
+  "Field Goal Made", "Field Goal Attempted", "2 Pointers Made", "3 Pointers Made"
+];
 
 type BetChoice = "OVER" | "UNDER";
 
@@ -54,24 +58,25 @@ export default function NbaPlayerStatsPage() {
     setBetChoice(choice);
     setTimeout(() => {
       audioRef.current?.play();
-    }, 100); // slight delay to ensure UI updates before sound
+    }, 100);
   };
 
   return (
-    <div className="min-h-screen bg-[#18180f] flex flex-col items-center justify-center p-8 relative">
-      <h2 className="text-3xl font-bold text-white mb-8">NBA Player Stats</h2>
-      <h3 className="text-2xl font-bold text-white mb-8">OKC vs Pacers</h3>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 w-full max-w-5xl">
+    <div className="min-h-screen bg-gradient-to-b from-[#18180f] to-black flex flex-col items-center justify-center p-8 relative">
+      <h2 className="text-4xl font-extrabold text-white mb-2 tracking-wide">NBA Player Stats</h2>
+      <h3 className="text-xl text-yellow-300 mb-10">OKC vs Pacers — Place Your Bets</h3>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 w-full max-w-6xl">
         {players.map((player) => (
           <div
             key={player.name}
-            className="bg-[#23232a] border border-gray-700 rounded-lg flex flex-col items-center p-6 cursor-pointer hover:bg-[#27272f] transition hover:scale-105"
+            className="bg-[#1e1e24] border border-gray-700 rounded-xl flex flex-col items-center p-6 cursor-pointer hover:bg-[#2c2c38] transition-transform duration-300 hover:scale-105 shadow-lg hover:shadow-yellow-500/10"
             onClick={() => handleCardClick(player)}
           >
             <img
               src={player.image}
               alt={player.name}
-              className="w-32 h-32 object-cover rounded-full mb-4 border-4 border-gray-800"
+              className="w-28 h-28 object-cover rounded-full mb-4 border-4 border-yellow-400 shadow-lg"
             />
             <span className="text-lg font-semibold text-white tracking-wide text-center">
               {player.name}
@@ -80,93 +85,112 @@ export default function NbaPlayerStatsPage() {
         ))}
       </div>
 
-      {/* Modal for stat and bet selection only */}
-      {showModal && selectedPlayer && !betChoice && (
-        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
-          <div className="bg-[#18180f]/90 rounded-lg p-8 w-full max-w-xs flex flex-col items-center relative z-10 border border-yellow-300">
-            <button
-              className="absolute top-2 right-2 text-gray-400 hover:text-white text-2xl cursor-pointer"
-              onClick={handleClose}
+      {/* Modal */}
+      <AnimatePresence>
+        {showModal && selectedPlayer && !betChoice && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-md flex items-center justify-center z-50"
+          >
+            <motion.div
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.9 }}
+              className="bg-[#18180f]/90 rounded-xl p-8 w-full max-w-sm border border-yellow-400 shadow-xl relative"
             >
-              &times;
-            </button>
+              <button
+                className="absolute top-2 right-3 text-gray-400 hover:text-white text-2xl"
+                onClick={handleClose}
+              >
+                &times;
+              </button>
+              <img
+                src={selectedPlayer.image}
+                alt={selectedPlayer.name}
+                className="w-24 h-24 object-cover rounded-full mb-4 border-4 border-yellow-400 shadow-md mx-auto"
+              />
+              <h3 className="text-xl font-bold text-white mb-4 text-center">{selectedPlayer.name}</h3>
+
+              {!selectedStat ? (
+                <>
+                  <p className="text-gray-300 mb-2 text-center">Choose a stat to bet on:</p>
+                  <div className="flex flex-col gap-2 w-full">
+                    {stats.map((stat) => (
+                      <button
+                        key={stat}
+                        className="w-full py-2 px-4 bg-[#2a2a2a] text-white rounded-md hover:bg-yellow-400 hover:text-black transition duration-200"
+                        onClick={() => setSelectedStat(stat)}
+                      >
+                        {stat}
+                      </button>
+                    ))}
+                  </div>
+                </>
+              ) : (
+                <div className="w-full flex flex-col items-center gap-4 mt-4">
+                  <p className="text-gray-300 mb-2 text-center">
+                    Bet on <strong>{selectedStat}</strong> for <strong>{selectedPlayer.name}</strong>
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4 w-full">
+                    <button
+                      className="flex-1 bg-white text-black font-bold py-2 rounded-md hover:bg-gray-100 transition uppercase tracking-widest"
+                      onClick={() => handleBet("OVER")}
+                    >
+                      OVER +
+                    </button>
+                    <button
+                      className="flex-1 bg-transparent text-white font-bold py-2 border border-gray-400 rounded-md hover:bg-[#23232a] transition uppercase tracking-widest"
+                      onClick={() => handleBet("UNDER")}
+                    >
+                      - UNDER
+                    </button>
+                  </div>
+                </div>
+              )}
+              <button
+                className="mt-4 px-6 py-2 bg-transparent text-white rounded-md shadow font-semibold cursor-pointer border border-yellow-300 hover:bg-yellow-400 hover:text-black transition"
+                onClick={handleClose}
+              >
+                Close
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Confirmation Card */}
+      {betChoice && selectedPlayer && selectedStat && (
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50">
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            className="relative rounded-2xl shadow-xl px-8 py-10 flex flex-col items-center justify-center bg-[#18180f]/90 border border-yellow-400 backdrop-blur-lg overflow-hidden transition-transform duration-300"
+            style={{ width: 360, height: 420 }}
+          >
             <img
               src={selectedPlayer.image}
               alt={selectedPlayer.name}
-              className="w-24 h-24 object-cover rounded-full mb-4 border-4 border-gray-800"
+              className="w-20 h-20 object-cover rounded-full border-4 border-yellow-400 shadow-lg mb-3"
             />
-            <h3 className="text-xl font-bold text-white mb-4 text-center">
+            <h3 className="text-3xl font-extrabold text-yellow-300 mb-1 drop-shadow-md">
               {selectedPlayer.name}
             </h3>
-            {!selectedStat ? (
-              <>
-                <p className="text-gray-300 mb-2">Choose a stat to bet on:</p>
-                <div className="flex flex-col gap-2 w-full">
-                  {stats.map((stat) => (
-                    <button
-                      key={stat}
-                      className="w-full py-2 px-4 bg-[#383838] text-white rounded hover:bg-[#444] transition cursor-pointer"
-                      onClick={() => setSelectedStat(stat)}
-                    >
-                      {stat}
-                    </button>
-                  ))}
-                </div>
-              </>
-            ) : (
-              <div className="w-full flex flex-col items-center gap-4 mt-4">
-                <p className="text-gray-300 mb-4 text-center">
-                  {`Bet on ${selectedStat} for ${selectedPlayer.name}`}
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 w-full">
-                  {/* OVER button */}
-                  <button
-                    className="flex-1 flex items-center justify-center gap-2 bg-white text-black font-semibold px-6 py-3 rounded-sm shadow border border-transparent hover:bg-gray-100 transition uppercase tracking-widest w-full sm:w-auto cursor-pointer"
-                    onClick={() => handleBet("OVER")}
-                  >
-                    OVER <span className="ml-2">+</span>
-                  </button>
-                  {/* UNDER button */}
-                  <button
-                    className="flex-1 flex items-center justify-center gap-2 bg-transparent text-white font-semibold px-6 py-3 rounded-sm shadow border border-gray-400 hover:bg-[#23232a] transition uppercase tracking-widest w-full sm:w-auto cursor-pointer"
-                    onClick={() => handleBet("UNDER")}
-                  >
-                    <span className="flex items-center justify-center mr-2 text-lg font-bold">-</span>
-                    UNDER
-                  </button>
-                </div>
-              </div>
-            )}
-            <button
-              className="mt-2 px-6 py-2 bg-yellow-400 text-black rounded shadow hover:bg-yellow-300 font-semibold cursor-pointer z-10 border border-yellow-300"
-              onClick={handleClose}
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Confirmation UI as a non-modal card */}
-      {betChoice && selectedPlayer && selectedStat && (
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50">
-          <div className="relative rounded-xl shadow-lg px-8 py-10 flex flex-col items-center justify-center bg-[#18180f]/95 border border-yellow-300 overflow-hidden min-w-[340px]" style={{ width: 360, height: 420 }}>
-            <img src={selectedPlayer.image} alt={selectedPlayer.name} className="w-20 h-20 object-cover rounded-full border-4 border-yellow-300 z-10 mb-2" />
-            <h3 className="text-3xl font-extrabold text-yellow-300 z-10 mb-1">{selectedPlayer.name}</h3>
-            <div className="flex items-center gap-2 z-10 mb-1">
-              <span className="text-2xl font-bold text-white">{selectedStat}</span>
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-xl font-semibold text-white">{selectedStat}</span>
               <span className="text-lg font-bold text-yellow-400">{betChoice}</span>
             </div>
-            <span className="text-yellow-200 z-10 mb-4">Your bet has been placed!</span>
+            <p className="text-yellow-100 text-sm mb-4">Your bet has been placed!</p>
             <button
-              className="mt-2 px-6 py-2 bg-yellow-400 text-black rounded shadow hover:bg-yellow-300 font-semibold cursor-pointer z-10 border border-yellow-300"
+              className="mt-2 px-6 py-2 bg-transparent text-white rounded-md shadow font-semibold cursor-pointer border border-yellow-300 hover:bg-yellow-400 hover:text-black transition z-10"
               onClick={handleClose}
             >
               Close
             </button>
             <TipButton />
             <audio autoPlay src="/ok john.mp3" />
-          </div>
+          </motion.div>
         </div>
       )}
     </div>
@@ -196,14 +220,14 @@ function TipButton() {
     <>
       <button
         ref={btnRef}
-        className="absolute z-20 px-4 py-2 bg-yellow-400 text-black rounded font-semibold shadow cursor-pointer select-none transition-all duration-200 border border-yellow-300"
+        className="absolute z-20 px-4 py-2 bg-gradient-to-r from-yellow-400 to-yellow-300 text-black rounded-md font-semibold shadow-md cursor-pointer border border-yellow-300 hover:scale-105 transition-all duration-200"
         style={{ top: pos.top, left: pos.left, minWidth: 140 }}
         onMouseEnter={moveButton}
         onClick={moveButton}
       >
-        Ask for a tip
+        🎯 Ask for a Tip
       </button>
       <audio ref={audioRef} src="/nope.mp3" />
     </>
   );
-} 
+}
