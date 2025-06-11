@@ -9,20 +9,48 @@ interface Player {
 
 const players: Player[] = [
   {
-    name: "LeBron James",
-    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/2544.png",
+    name: "Alex Caruso",
+    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/1627936.png",
   },
   {
-    name: "Stephen Curry",
-    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/201939.png",
+    name: "Luguentz Dort",
+    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/1629652.png",
   },
   {
-    name: "Giannis Antetokounmpo",
-    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/203507.png",
+    name: "Shai Gilgeous-Alexander",
+    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/1628983.png",
   },
   {
-    name: "Kevin Durant",
-    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/201142.png",
+    name: "Isaiah Hartenstein",
+    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/1628392.png",
+  },
+  {
+    name: "Chet Holmgren",
+    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/1631096.png",
+  },
+  {
+    name: "Isaiah Joe",
+    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/1630198.png",
+  },
+  {
+    name: "Cason Wallace",
+    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/1641703.png",
+  },
+  {
+    name: "Aaron Wiggins",
+    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/1630598.png",
+  },
+  {
+    name: "Jalen Williams",
+    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/1631114.png",
+  },
+  {
+    name: "Kenrich Williams",
+    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/1629026.png",
+  },
+  {
+    name: "	Jaylin Williams",
+    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/1631119.png",
   },
 ];
 
@@ -64,7 +92,7 @@ export default function NbaPlayerStatsPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#18180f] to-black flex flex-col items-center justify-center p-8 relative">
       <h2 className="text-4xl font-extrabold text-white mb-2 tracking-wide">NBA Player Stats</h2>
-      <h3 className="text-xl text-yellow-300 mb-10">OKC vs Pacers — Place Your Bets</h3>
+      <h3 className="text-xl text-yellow-300 mb-10">OKC vs Pacers — Hi Jai! Pick a Bet for me to win</h3>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 w-full max-w-6xl">
         {players.map((player) => (
@@ -135,13 +163,13 @@ export default function NbaPlayerStatsPage() {
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 w-full">
                     <button
-                      className="flex-1 bg-white text-black font-bold py-2 rounded-md hover:bg-gray-100 transition uppercase tracking-widest"
+                      className="flex-1 bg-transparent text-white font-bold py-2 border border-yellow-300 rounded-md hover:bg-yellow-400 hover:text-black transition uppercase tracking-widest"
                       onClick={() => handleBet("OVER")}
                     >
                       OVER +
                     </button>
                     <button
-                      className="flex-1 bg-transparent text-white font-bold py-2 border border-gray-400 rounded-md hover:bg-[#23232a] transition uppercase tracking-widest"
+                      className="flex-1 bg-transparent text-white font-bold py-2 border border-yellow-300 rounded-md hover:bg-yellow-400 hover:text-black transition uppercase tracking-widest"
                       onClick={() => handleBet("UNDER")}
                     >
                       - UNDER
@@ -181,7 +209,7 @@ export default function NbaPlayerStatsPage() {
               <span className="text-xl font-semibold text-white">{selectedStat}</span>
               <span className="text-lg font-bold text-yellow-400">{betChoice}</span>
             </div>
-            <p className="text-yellow-100 text-sm mb-4">Your bet has been placed!</p>
+            <p className="text-yellow-100 text-sm mb-4">Nice ka Jai! Thank u sa swerte!</p>
             <button
               className="mt-2 px-6 py-2 bg-transparent text-white rounded-md shadow font-semibold cursor-pointer border border-yellow-300 hover:bg-yellow-400 hover:text-black transition z-10"
               onClick={handleClose}
