@@ -47,7 +47,7 @@ export default function LuckyCharm() {
     const randomTip = luckyTips[Math.floor(Math.random() * luckyTips.length)];
     setTip(randomTip);
     setShow(true);
-    setTimeout(() => setShow(false), 3500);
+    setTimeout(() => setShow(false), 6000);
   };
 
   return (

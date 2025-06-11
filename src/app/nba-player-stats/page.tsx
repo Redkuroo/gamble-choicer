@@ -1,6 +1,7 @@
 "use client";
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from 'next/image';
 
 interface Player {
   name: string;
@@ -187,9 +188,11 @@ export default function NbaPlayerStatsPage() {
             className="bg-[#1e1e24] border border-gray-700 rounded-xl flex flex-col items-center p-6 cursor-pointer hover:bg-[#2c2c38] transition-transform duration-300 hover:scale-105 shadow-lg hover:shadow-yellow-500/10"
             onClick={() => handleCardClick(player)}
           >
-            <img
+            <Image
               src={player.image}
               alt={player.name}
+              width={112}
+              height={112}
               className="w-28 h-28 object-cover rounded-full mb-4 border-4 border-yellow-400 shadow-lg"
             />
             <span className="text-lg font-semibold text-white tracking-wide text-center">
@@ -220,9 +223,11 @@ export default function NbaPlayerStatsPage() {
               >
                 &times;
               </button>
-              <img
+              <Image
                 src={selectedPlayer.image}
                 alt={selectedPlayer.name}
+                width={96}
+                height={96}
                 className="w-24 h-24 object-cover rounded-full mb-4 border-4 border-yellow-400 shadow-md mx-auto"
               />
               <h3 className="text-xl font-bold text-white mb-4 text-center">{selectedPlayer.name}</h3>
@@ -283,9 +288,11 @@ export default function NbaPlayerStatsPage() {
             className="relative rounded-2xl shadow-xl px-8 py-10 flex flex-col items-center justify-center bg-[#18180f]/90 border border-yellow-400 backdrop-blur-lg overflow-hidden transition-transform duration-300"
             style={{ width: 360, height: 420 }}
           >
-            <img
+            <Image
               src={selectedPlayer.image}
               alt={selectedPlayer.name}
+              width={80}
+              height={80}
               className="w-20 h-20 object-cover rounded-full border-4 border-yellow-400 shadow-lg mb-3"
             />
             <h3 className="text-3xl font-extrabold text-yellow-300 mb-1 drop-shadow-md">
