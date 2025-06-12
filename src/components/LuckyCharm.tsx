@@ -11,6 +11,7 @@ const luckyTips = [
     "Pusta og pula kung nagslippers ra ka karon.",
     "Para sa mga legend ra ang purple!",
     "Kung naka-smile ka karon, daog ang Player!",
+    "Edgar antao love Salas
   
     // Stats-related
     "Kung daghan rebounds ang player gahapon, basin OVER na karon!",
