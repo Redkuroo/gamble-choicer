@@ -4,7 +4,7 @@ const luckyTips = [
     "Pusta og green kung nakakita kag baki karon!",
     "Kung online si Jai, dobleha imong pusta!",
     "Pili og yellow kung itlog imong pamahaw.",
-    "Blue ang swerte kung nag-uwan ron.",
+    "Blue ang swerte kung nag-uwan ron ug isda.",
     "Kung pildi ka sa last round, sulayi ang Banker!",
     "Pangutan-a si Jai para tip, pero basin 'Nope!' ra iyang tubag.",
     "Kung madungog nimo ang 'OK John', panalipdan imong sunod nga pusta.",
@@ -12,6 +12,7 @@ const luckyTips = [
     "Para sa mga legend ra ang purple!",
     "Kung naka-smile ka karon, daog ang Player!",
     "hays!",
+
   
     // Stats-related
     "Kung daghan rebounds ang player gahapon, basin OVER na karon!",
