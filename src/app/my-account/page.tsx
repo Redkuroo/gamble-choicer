@@ -5,14 +5,14 @@ export default function MyAccount() {
   return (
     <>
       <LuckyCharm />
-      <div className="min-h-screen bg-[#18180f] flex flex-col items-center justify-center p-8">
-        <h1 className="text-5xl font-light text-white mb-2">My <span className="italic font-semibold">Account</span></h1>
-        <p className="text-gray-300 mb-10 text-lg">Manage your profile and preferences</p>
+      <div className="min-h-screen bg-[#18180f] flex flex-col items-center justify-center p-4 sm:p-8">
+        <h1 className="text-4xl sm:text-5xl font-light text-white mb-2 text-center">My <span className="italic font-semibold">Account</span></h1>
+        <p className="text-gray-300 mb-10 text-base sm:text-lg text-center">Manage your profile and preferences</p>
         
         <div className="w-full max-w-4xl">
           {/* Profile Section */}
-          <div className="bg-[#23232a] border border-gray-700 rounded-lg p-8 mb-8">
-            <h2 className="text-2xl font-semibold text-white mb-6">Profile Information</h2>
+          <div className="bg-[#23232a] border border-gray-700 rounded-lg p-6 sm:p-8 mb-8">
+            <h2 className="text-xl sm:text-2xl font-semibold text-white mb-6">Profile Information</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-gray-300 text-sm font-medium mb-2">Full Name</label>
@@ -49,35 +49,35 @@ export default function MyAccount() {
           </div>
 
           {/* Account Settings */}
-          <div className="bg-[#23232a] border border-gray-700 rounded-lg p-8 mb-8">
-            <h2 className="text-2xl font-semibold text-white mb-6">Account Settings</h2>
-            <div className="space-y-4">
+          <div className="bg-[#23232a] border border-gray-700 rounded-lg p-6 sm:p-8 mb-8">
+            <h2 className="text-xl sm:text-2xl font-semibold text-white mb-6">Account Settings</h2>
+            <div className="space-y-6">
               <div className="flex items-center justify-between">
-                <div>
+                <div className="pr-4">
                   <h3 className="text-white font-medium">Email Notifications</h3>
                   <p className="text-gray-400 text-sm">Receive updates about your account</p>
                 </div>
-                <label className="relative inline-flex items-center cursor-pointer">
+                <label className="relative inline-flex items-center cursor-pointer flex-shrink-0">
                   <input type="checkbox" className="sr-only peer" defaultChecked />
                   <div className="w-11 h-6 bg-gray-600 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
                 </label>
               </div>
               <div className="flex items-center justify-between">
-                <div>
+                <div className="pr-4">
                   <h3 className="text-white font-medium">SMS Notifications</h3>
                   <p className="text-gray-400 text-sm">Receive text message updates</p>
                 </div>
-                <label className="relative inline-flex items-center cursor-pointer">
+                <label className="relative inline-flex items-center cursor-pointer flex-shrink-0">
                   <input type="checkbox" className="sr-only peer" />
                   <div className="w-11 h-6 bg-gray-600 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
                 </label>
               </div>
               <div className="flex items-center justify-between">
-                <div>
+                <div className="pr-4">
                   <h3 className="text-white font-medium">Two-Factor Authentication</h3>
                   <p className="text-gray-400 text-sm">Add an extra layer of security</p>
                 </div>
-                <label className="relative inline-flex items-center cursor-pointer">
+                <label className="relative inline-flex items-center cursor-pointer flex-shrink-0">
                   <input type="checkbox" className="sr-only peer" />
                   <div className="w-11 h-6 bg-gray-600 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
                 </label>
