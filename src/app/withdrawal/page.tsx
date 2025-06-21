@@ -18,11 +18,11 @@ const WithdrawalPage = () => {
     <div className="min-h-screen bg-[#18180f] text-white flex flex-col">
       {/* Header */}
       <header className="bg-[#23232a] p-4 flex items-center justify-between sticky top-0 z-10">
-        <Link href="/" className="text-xl">
+        <Link href="/" className="text-xl sm:text-2xl">
             <FaArrowLeft />
         </Link>
-        <h1 className="text-xl font-semibold">Withdrawal</h1>
-        <button className="text-xl">
+        <h1 className="text-xl sm:text-2xl font-semibold">Withdrawal</h1>
+        <button className="text-xl sm:text-2xl">
           <FaHistory />
         </button>
       </header>
@@ -33,35 +33,35 @@ const WithdrawalPage = () => {
           <button
             key={tab.name}
             onClick={() => setActiveTab(tab.name)}
-            className={`flex-1 flex items-center justify-center p-4 text-sm font-medium border-b-2 transition ${
+            className={`flex-1 flex items-center justify-center p-3 sm:p-4 text-xs sm:text-sm font-medium border-b-2 transition ${
               activeTab === tab.name
                 ? 'border-red-500 text-red-500'
                 : 'border-transparent text-gray-400 hover:text-white'
             }`}
           >
-            <span className="mr-2 text-lg">{tab.icon}</span>
-            {tab.name}
+            <span className="mr-2 text-base sm:text-lg">{tab.icon}</span>
+            <span className="hidden sm:inline">{tab.name}</span>
           </button>
         ))}
       </nav>
 
       {/* Main Content */}
-      <main className="flex-1 p-6 relative">
+      <main className="flex-1 p-4 sm:p-6 relative">
         <div className="w-full max-w-md mx-auto">
-          <p className="text-gray-400 mb-4">Bound E wallet (0/5)</p>
+          <p className="text-gray-400 mb-4 text-sm">Bound E wallet (0/5)</p>
           
-          <div className="bg-[#2a2a32] rounded-lg p-8 flex flex-col items-center justify-center mb-6 text-center">
-            <IoPhonePortraitOutline className="text-7xl text-gray-500 mb-4" />
+          <div className="bg-[#2a2a32] rounded-lg p-6 sm:p-8 flex flex-col items-center justify-center mb-6 text-center">
+            <IoPhonePortraitOutline className="text-6xl sm:text-7xl text-gray-500 mb-4" />
             <p className="text-gray-500">Empty E-Wallet</p>
           </div>
 
-          <div className="absolute right-6 -mt-12">
-            <button className="bg-red-600 hover:bg-red-700 text-white rounded-full w-14 h-14 flex items-center justify-center text-3xl shadow-lg">
+          <div className="absolute right-4 sm:right-6 -mt-16 sm:-mt-12">
+            <button className="bg-red-600 hover:bg-red-700 text-white rounded-full w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center text-2xl sm:text-3xl shadow-lg">
                 +
             </button>
           </div>
 
-          <div className="text-sm text-gray-400 space-y-2 mb-6">
+          <div className="text-xs sm:text-sm text-gray-400 space-y-2 mb-6">
             <p>Withdrawal time: 24 hours</p>
             <p>Daily withdrawal 10 (Times), Remaining withdrawal 10 (Times)</p>
             <p>Main Wallet : ₱ 12.19</p>
