@@ -14,10 +14,10 @@ export default function ColorGamesPage() {
   const [selected, setSelected] = useState<string | null>(null);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#18180f] to-black flex flex-col items-center justify-center p-8 relative">
-      <h2 className="text-4xl font-extrabold text-white mb-2 tracking-wide">Color Games</h2>
-      <h3 className="text-xl text-yellow-300 mb-10">Pick a color to bet on</h3>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 w-full max-w-3xl">
+    <div className="min-h-screen bg-gradient-to-b from-[#18180f] to-black flex flex-col items-center justify-center p-4 sm:p-8 relative">
+      <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-2 tracking-wide">Color Games</h2>
+      <h3 className="text-lg sm:text-xl text-yellow-300 mb-10">Pick a color to bet on</h3>
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-8 w-full max-w-3xl">
         {colors.map((c) => (
           <div
             key={c.name}
@@ -25,13 +25,13 @@ export default function ColorGamesPage() {
             style={{ background: c.color, color: c.name === 'Silver' ? '#222' : '#fff' }}
             onClick={() => setSelected(c.name)}
           >
-            <span className="text-3xl font-bold tracking-wide mb-2" style={{ color: c.name === 'Silver' ? '#222' : '#fff' }}>{c.name}</span>
+            <span className="text-2xl sm:text-3xl font-bold tracking-wide" style={{ color: c.name === 'Silver' ? '#222' : '#fff' }}>{c.name}</span>
           </div>
         ))}
       </div>
       {selected && (
-        <div className="absolute left-1/2 top-3/4 -translate-x-1/2 -translate-y-1/2 z-50">
-          <div className="relative rounded-2xl shadow-xl px-8 py-10 flex flex-col items-center justify-center bg-[#18180f]/90 border border-yellow-400 backdrop-blur-lg overflow-hidden transition-transform duration-300 min-w-[300px]">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+          <div className="relative rounded-2xl shadow-xl px-8 py-10 flex flex-col items-center justify-center bg-[#18180f]/90 border border-yellow-400 backdrop-blur-lg overflow-hidden transition-transform duration-300 min-w-[300px] w-full max-w-sm">
             <h3 className="text-3xl font-extrabold text-yellow-300 mb-1 drop-shadow-md">
               {selected}
             </h3>
