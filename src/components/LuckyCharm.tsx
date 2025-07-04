@@ -12,6 +12,7 @@ const luckyTips = [
     "Para sa mga legend ra ang purple!",
     "Kung naka-smile ka karon, daog ang Player!",
     "hays!",
+    "hahaha",
 
   
     // Stats-related
