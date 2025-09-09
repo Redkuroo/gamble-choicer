@@ -18,7 +18,7 @@ export default function BacarratsPage() {
   const [selected, setSelected] = useState<string | null>(null);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#18180f] to-black flex flex-col items-center justify-center p-4 sm:p-8 relative">
+    <div className="min-h-screen bg-gradient-to-b from-[#18180f] to-black flex flex-col items-center justify-center p-3 sm:p-7 relative">
       <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-2 tracking-wide">Bacarrats</h2>
       <h3 className="text-lg sm:text-xl text-yellow-300 mb-10">Choose your bet</h3>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 w-full max-w-xl">
