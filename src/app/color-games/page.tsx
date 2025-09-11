@@ -21,7 +21,7 @@ export default function ColorGamesPage() {
         {colors.map((c) => (
           <div
             key={c.name}
-            className={`border border-gray-700 rounded-xl flex flex-col items-center p-6 cursor-pointer transition-transform duration-300 hover:scale-105 shadow-lg hover:shadow-yellow-500/10 ${selected === c.name ? 'border-yellow-400' : ''}`}
+            className={`border border-gray-800 rounded-xl flex flex-col items-center p-6 cursor-pointer transition-transform duration-300 hover:scale-105 shadow-lg hover:shadow-yellow-500/10 ${selected === c.name ? 'border-yellow-400' : ''}`}
             style={{ background: c.color, color: c.name === 'Silver' ? '#222' : '#fff' }}
             onClick={() => setSelected(c.name)}
           >
